@@ -1,0 +1,16 @@
+@import "colors";
+
+body {
+  background-color: #141414;
+  color: $primary;
+}
+
+@font-face {
+  font-family: 'Glysa';
+  src: local('Glysa'), url('./fonts/Glysa.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'LexendDeca';
+  src: local('LexendDeca'), url('./fonts/LexendDeca.ttf') format('truetype');
+}

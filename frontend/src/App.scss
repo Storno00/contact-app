@@ -1,0 +1,101 @@
+@import "colors";
+
+h1 {
+  font-family: Glysa, sans-serif;
+  font-size: 32px;
+  line-height: 48px;
+  letter-spacing: 0;
+}
+
+h2 {
+  font-family: Glysa, sans-serif;
+  font-size: 24px;
+  line-height: 40px;
+  letter-spacing: 0;
+}
+
+h3 {
+  font-family: LexendDeca, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 1px;
+}
+
+.body {
+  font-family: LexendDeca, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 1px;
+}
+
+.message {
+  font-family: LexendDeca, sans-serif;
+  font-size: 12px;
+  line-height: 12px;
+  letter-spacing: 1px;
+}
+
+.main-btn {
+  padding: 11px 16px;
+  color: $primary;
+  background-color: $g60;
+  height: 40px;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-btn:hover {
+  background-color: $g50;
+}
+
+.main-btn:active {
+  background-color: $g40;
+}
+
+.rounded {
+  border-radius: 1000px;
+}
+
+.icon-lg {
+  height: 24px;
+}
+
+.icon-sm {
+  height: 20px;
+}
+
+.input-group {
+
+}
+
+.main-input {
+  display: block;
+  height: 40px;
+  border: 1px solid $g60;
+  background-color: $g80;
+  border-radius: 8px;
+  width: 390px;
+  max-width: 390px;
+  margin-top: 4px;
+  padding: 0 16px;
+  font-family: LexendDeca, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 1px;
+  color: $primary;
+}
+
+.main-input:hover {
+  border: 1px solid $g30;
+}
+
+.main-input:focus {
+  outline: 0;
+  border: 1px solid $g10;
+  background-color: $g60;
+  color: $primary;
+}
