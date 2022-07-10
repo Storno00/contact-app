@@ -13,5 +13,5 @@ model Contact {
   phoneNumber String
   email String
   imageUrl String
-  isFavourite Boolean
+  isFavourite Boolean @default(false)
 }
