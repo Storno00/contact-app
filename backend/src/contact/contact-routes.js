@@ -8,6 +8,7 @@ router.use(cors());
 router.use(express.json());
 
 router.post('/', ContactController.post);
+router.get('/:contactId', ContactController.get);
 router.delete('/:contactId', ContactController.delete);
 
 export default router;
