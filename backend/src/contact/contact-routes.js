@@ -7,6 +7,7 @@ const router = express.Router();
 router.use(cors());
 router.use(express.json());
 
+router.get('/', ContactController.getAll);
 router.get('/:contactId', ContactController.get);
 router.post('/', ContactController.post);
 router.patch('/:contactId', ContactController.patch);

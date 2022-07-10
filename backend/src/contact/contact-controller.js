@@ -1,6 +1,15 @@
 import ContactService from './contact-service';
 
 class ContactController {
+  static async getAll(req, res, next) {
+    try {
+      const contacts = await ContactService.getAllContacts();
+      res.status(200).send(contacts);
+    } catch (err) {
+      next(err);
+    }
+  }
+
   static async get(req, res, next) {
     try {
       const contact = await ContactService.getContact(req.params);

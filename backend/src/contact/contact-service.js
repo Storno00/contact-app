@@ -3,6 +3,10 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient;
 
 class ContactService {
+  static async getAllContacts() {
+    return prisma.contact.findMany();
+  }
+
   static async getContact({ contactId }) {
     if (isNaN(contactId)) return { message: 'Invalid contact ID' };
 
