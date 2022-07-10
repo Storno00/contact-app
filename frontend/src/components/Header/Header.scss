@@ -1,0 +1,52 @@
+header {
+  margin-top: 96px;
+  height: 96px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+header span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-pic {
+  height: 24px;
+  width: 24px;
+}
+
+.header-left {
+  margin-right: 30px;
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.header-middle {
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+}
+
+.header-right {
+  margin-left: 30px;
+  width: 20%;
+  display: flex;
+  align-items: center;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+nav span, nav button {
+  margin: 11px;
+}
