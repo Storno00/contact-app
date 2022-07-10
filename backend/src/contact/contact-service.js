@@ -9,12 +9,23 @@ class ContactService {
     return prisma.contact.findUnique({
       where: {
         id: parseInt(contactId),
-      }
+      },
     });
   }
 
   static async createContact(contactData) {
     return prisma.contact.create({ data: contactData });
+  }
+
+  static async updateContact({ contactId }, contactData) {
+    if (isNaN(contactId)) return { message: 'Invalid contact ID' };
+
+    return prisma.contact.update({
+      where: {
+        id: parseInt(contactId),
+      },
+      data: contactData,
+    });
   }
 
   static async removeContact({ contactId }) {
@@ -23,7 +34,7 @@ class ContactService {
     return prisma.contact.delete({
       where: {
         id: parseInt(contactId),
-      }
+      },
     });
   }
 }

@@ -19,7 +19,14 @@ class ContactController {
     }
   }
 
-  static async patch() {}
+  static async patch(req, res, next) {
+    try {
+      const contact = await ContactService.updateContact(req.params, req.body);
+      res.status(200).send(contact);
+    } catch (err) {
+      next(err);
+    }
+  }
 
   static async delete(req, res, next) {
     try {
