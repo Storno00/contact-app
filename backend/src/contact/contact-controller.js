@@ -14,7 +14,14 @@ class ContactController {
 
   static async patch() {}
 
-  static async delete() {}
+  static async delete(req, res, next) {
+    try {
+      const contact = await ContactService.removeContact(req.params);
+      res.status(200).send(contact);
+    } catch (err) {
+      next(err);
+    }
+  }
 }
 
 export default ContactController;
