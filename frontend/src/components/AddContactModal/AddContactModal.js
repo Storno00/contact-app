@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useContext } from 'react';
 import {BACKEND_CONTACT, CLOUDINARY_UPLOAD_PRESET, CLOUDINARY_URL} from '../../constants/url';
 import Axios from 'axios';
 import { Formik } from 'formik';
@@ -8,7 +8,7 @@ import changeIcon from './../../icons/Change.svg';
 import deleteIcon from './../../icons/Delete.svg';
 import formSchema from './../../validations/AddContactValidation';
 import TextInput from '../TextInput/TextInput';
-import axios from "axios";
+import ContactsContext from '../../contexts/ContactProvider';
 
 const defaultImageUrl = 'https://res.cloudinary.com/dooqcjpph/image/upload/v1657525303/Contact%20App/default_ug1ogk.png';
 
@@ -19,6 +19,8 @@ const initialValues = {
 };
 
 const AddContactModal = ({ setShowModal }) => {
+
+  const { contacts, setContacts } = useContext(ContactsContext);
 
   const [imgFile, setImgFile] = useState();
   const [imgUrl, setImgUrl] = useState(defaultImageUrl);
@@ -49,9 +51,12 @@ const AddContactModal = ({ setShowModal }) => {
   };
 
   const handleOnSubmit = async (values) => {
-    const imageUrl = await uploadImage(imgFile);
+    const imageUrl = imgFile ? await uploadImage(imgFile) : defaultImageUrl;
     const formData = { ...values, imageUrl };
-    await axios.post(BACKEND_CONTACT, formData);
+    const response = await Axios.post(BACKEND_CONTACT, formData);
+    if (response.status === 200) {
+      setContacts([ ...contacts, response.data ])
+    }
   };
 
   useEffect(() => {
