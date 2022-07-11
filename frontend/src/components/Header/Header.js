@@ -5,7 +5,7 @@ import add from './../../icons/Add.svg';
 import lightMode from './../../icons/Light-mode.svg';
 import './Header.scss';
 
-const Header = () => {
+const Header = ({ setShowModal }) => {
   return (
     <header>
       <div className="header-left">
@@ -16,7 +16,7 @@ const Header = () => {
         <nav>
           <span><img src={settings} alt="settings" className="icon-lg" /></span>
           <span><img src={profile} alt="settings" className="icon-lg" /></span>
-          <button className="main-btn rounded body">
+          <button className="main-btn rounded body" onClick={() => setShowModal(true)}>
             <img src={add} alt="settings" className="icon-lg" />
             Add new
           </button>
