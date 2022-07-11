@@ -55,7 +55,8 @@ const AddContactModal = ({ setShowModal }) => {
     const formData = { ...values, imageUrl };
     const response = await Axios.post(BACKEND_CONTACT, formData);
     if (response.status === 200) {
-      setContacts([ ...contacts, response.data ])
+      setContacts([ ...contacts, response.data ]);
+      setShowModal(false);
     }
   };
 
