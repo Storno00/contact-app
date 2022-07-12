@@ -1,4 +1,6 @@
 import { PrismaClient } from '@prisma/client';
+import validate from 'uuid-validate';
+import HttpError from '../utils/HttpError';
 
 const prisma = new PrismaClient;
 
@@ -8,11 +10,11 @@ class ContactService {
   }
 
   static async getContact({ contactId }) {
-    if (isNaN(contactId)) return { message: 'Invalid contact ID' };
+    if (!validate(contactId)) throw new HttpError('Invalid contact ID', 404);
 
     return prisma.contact.findUnique({
       where: {
-        id: parseInt(contactId),
+        id: contactId,
       },
     });
   }
@@ -22,22 +24,22 @@ class ContactService {
   }
 
   static async updateContact({ contactId }, contactData) {
-    if (isNaN(contactId)) return { message: 'Invalid contact ID' };
+    if (!validate(contactId)) throw new HttpError('Invalid contact ID', 404);
 
     return prisma.contact.update({
       where: {
-        id: parseInt(contactId),
+        id: contactId,
       },
       data: contactData,
     });
   }
 
   static async removeContact({ contactId }) {
-    if (isNaN(contactId)) return { message: 'Invalid contact ID' };
+    if (!validate(contactId)) throw new HttpError('Invalid contact ID', 404);
 
     return prisma.contact.delete({
       where: {
-        id: parseInt(contactId),
+        id: contactId,
       },
     });
   }
