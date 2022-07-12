@@ -20,6 +20,7 @@
     "cors": "^2.8.5",
     "dotenv": "^8.6.0",
     "express": "^4.16.4",
+    "uuid-validate": "^0.0.3",
     "yup": "^0.32.11"
   },
   "devDependencies": {
