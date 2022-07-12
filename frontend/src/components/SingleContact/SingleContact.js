@@ -9,10 +9,12 @@ import callIcon from './../../icons/Call.svg';
 import Axios from 'axios';
 import { BACKEND_CONTACT } from '../../constants/url';
 import ContactsContext from '../../contexts/ContactProvider';
+import ShowModalContext from '../../contexts/ShowModalProvider';
 
-const SingleContact = ({ id, name, phoneNumber, imageUrl, isFavourite }) => {
+const SingleContact = ({ id, name, phoneNumber, imageUrl }) => {
 
   const { contacts, setContacts } = useContext(ContactsContext);
+  const { setShowEditModal, setModalContactId } = useContext(ShowModalContext);
 
   const [showControls, setShowControls] = useState(false);
   const [showMoreSettings, setShowMoreSettings] = useState(false);
@@ -24,6 +26,12 @@ const SingleContact = ({ id, name, phoneNumber, imageUrl, isFavourite }) => {
 
   const handleMoreSettings = () => {
     setShowMoreSettings(true);
+  };
+
+  const handleEdit = () => {
+    setModalContactId(id);
+    setShowEditModal(true);
+    closeSettings();
   };
 
   const handleRemove = async () => {
@@ -70,7 +78,7 @@ const SingleContact = ({ id, name, phoneNumber, imageUrl, isFavourite }) => {
         )}
         {showMoreSettings && (
           <div className="more-settings">
-            <button className="main-btn body">
+            <button className="main-btn body" onClick={handleEdit}>
               <img src={settingsIcon} alt="settings" />
               Edit
             </button>

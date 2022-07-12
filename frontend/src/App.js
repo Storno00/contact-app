@@ -1,18 +1,32 @@
-import { useState } from 'react';
+import { useContext } from 'react';
 import './App.scss';
 import Header from './components/Header/Header';
 import Modal from './components/Modal/Modal';
-import AddContactModal from './components/AddContactModal/AddContactModal';
+import EditContactModal from './components/AddContactModal/EditContactModal';
 import Contacts from './components/Contacts/Contacts';
+import ShowModalContext from './contexts/ShowModalProvider';
 
 const App = () => {
-  const [showModal, setShowModal] = useState(false);
+  const {
+    showAddModal,
+    setShowAddModal,
+    showEditModal,
+    setShowEditModal,
+    modalContactId
+  } = useContext(ShowModalContext);
 
   return (
     <div className="app">
-      <Header setShowModal={setShowModal} />
-      <Modal showModal={showModal} setShowModal={setShowModal}>
-        <AddContactModal setShowModal={setShowModal} />
+      <Header />
+      <Modal showModal={showAddModal} setShowModal={setShowAddModal}>
+        <EditContactModal addOrEdit="add" setShowModal={setShowAddModal} />
+      </Modal>
+      <Modal showModal={showEditModal} setShowModal={setShowEditModal}>
+        <EditContactModal
+          addOrEdit="edit"
+          setShowModal={setShowEditModal}
+          id={modalContactId}
+        />
       </Modal>
       <Contacts />
     </div>

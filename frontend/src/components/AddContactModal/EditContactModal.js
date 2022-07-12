@@ -12,19 +12,20 @@ import ContactsContext from '../../contexts/ContactProvider';
 
 const defaultImageUrl = 'https://res.cloudinary.com/dooqcjpph/image/upload/v1657525303/Contact%20App/default_ug1ogk.png';
 
-const initialValues = {
+const defaultInitialValues = {
   name: '',
   phoneNumber: '',
   email: '',
 };
 
-const AddContactModal = ({ setShowModal }) => {
+const EditContactModal = ({ addOrEdit, setShowModal, id }) => {
 
   const { contacts, setContacts } = useContext(ContactsContext);
 
   const [imgFile, setImgFile] = useState();
   const [imgUrl, setImgUrl] = useState(defaultImageUrl);
   const fileInputRef = useRef();
+  const [initialValues, setInitialValues] = useState(defaultInitialValues);
 
   const handleAddPicture = (e) => {
     e.preventDefault();
@@ -51,12 +52,29 @@ const AddContactModal = ({ setShowModal }) => {
   };
 
   const handleOnSubmit = async (values) => {
-    const imageUrl = imgFile ? await uploadImage(imgFile) : defaultImageUrl;
-    const formData = { ...values, imageUrl };
-    const response = await Axios.post(BACKEND_CONTACT, formData);
-    if (response.status === 200) {
-      setContacts([ ...contacts, response.data ]);
-      setShowModal(false);
+    if (addOrEdit === 'add') {
+      const imageUrl = imgFile ? await uploadImage(imgFile) : defaultImageUrl;
+      const formData = { ...values, imageUrl };
+      const response = await Axios.post(BACKEND_CONTACT, formData);
+      if (response.status === 200) {
+        setContacts([ ...contacts, response.data ]);
+        setShowModal(false);
+      }
+    }
+    if (addOrEdit === 'edit') {
+      if (initialValues.name === values.name &&
+        initialValues.email === values.email &&
+        initialValues.phoneNumber === values.phoneNumber &&
+        initialValues.imageUrl === imgUrl
+      ) return;
+      const imageUrl = imgFile ? await uploadImage(imgFile) : imgUrl;
+      const formData = { ...values, imageUrl };
+      const response = await Axios.patch(BACKEND_CONTACT + `/${id}`, formData);
+      if (response.status === 200) {
+        const newContacts = contacts.filter((contact) => contact.id !== id);
+        setContacts([ ...newContacts, response.data ]);
+        setShowModal(false);
+      }
     }
   };
 
@@ -72,13 +90,25 @@ const AddContactModal = ({ setShowModal }) => {
     setImgUrl(defaultImageUrl);
   }, [imgFile]);
 
+  useEffect(() => {
+    if (!id) return;
+    const getUser = async () => {
+      const response = await Axios.get(BACKEND_CONTACT + `/${id}`);
+      const { name, email, phoneNumber, imageUrl } = response.data;
+      setInitialValues({ name, email, phoneNumber, imageUrl });
+      setImgUrl(imageUrl);
+    }
+    getUser();
+  }, []);
+
   return (
     <div className="add-contact-modal">
-      <h2>Add contact</h2>
+      <h2>{addOrEdit === 'add' ? 'Add contact' : 'Edit contact'}</h2>
       <Formik
         initialValues={initialValues}
         validationSchema={formSchema}
         onSubmit={handleOnSubmit}
+        enableReinitialize
       >
         {({
             values,
@@ -168,4 +198,4 @@ const AddContactModal = ({ setShowModal }) => {
   );
 };
 
-export default AddContactModal;
+export default EditContactModal;
