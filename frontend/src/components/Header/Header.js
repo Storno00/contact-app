@@ -1,11 +1,16 @@
+import { useContext } from 'react';
 import backArrow from './../../icons/Back-arrow.svg';
 import settings from './../../icons/Settings.svg';
 import profile from './../../icons/Profile pic.png';
 import add from './../../icons/Add.svg';
 import lightMode from './../../icons/Light-mode.svg';
 import './Header.scss';
+import ShowModalContext from '../../contexts/ShowModalProvider';
 
-const Header = ({ setShowModal }) => {
+const Header = () => {
+
+  const { setShowAddModal } = useContext(ShowModalContext);
+
   return (
     <header>
       <div className="header-left">
@@ -16,7 +21,7 @@ const Header = ({ setShowModal }) => {
         <nav>
           <span><img src={settings} alt="settings" className="icon-lg" /></span>
           <span><img src={profile} alt="settings" className="icon-lg" /></span>
-          <button className="main-btn rounded body" onClick={() => setShowModal(true)}>
+          <button className="main-btn rounded body" onClick={() => setShowAddModal(true)}>
             <img src={add} alt="settings" className="icon-lg" />
             Add new
           </button>

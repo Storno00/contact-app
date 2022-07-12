@@ -3,10 +3,21 @@ import { createContext, useState } from 'react';
 const ShowModalContext = createContext({});
 
 export function ShowModalProvider({ children }) {
-  const [showModal, setShowModal] = useState(false);
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [modalContactId, setModalContactId] = useState('');
 
   return (
-    <ShowModalContext.Provider value={{ showModal, setShowModal }}>
+    <ShowModalContext.Provider value={
+      {
+        showAddModal,
+        setShowAddModal,
+        showEditModal,
+        setShowEditModal,
+        modalContactId,
+        setModalContactId
+      }
+    }>
       {children}
     </ShowModalContext.Provider>
   );
