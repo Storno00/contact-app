@@ -10,6 +10,7 @@ import Axios from 'axios';
 import { BACKEND_CONTACT } from '../../constants/url';
 import ContactsContext from '../../contexts/ContactProvider';
 import ShowModalContext from '../../contexts/ShowModalProvider';
+import  {useTransition, animated } from 'react-spring';
 
 const SingleContact = ({ id, name, phoneNumber, imageUrl }) => {
 
@@ -18,6 +19,14 @@ const SingleContact = ({ id, name, phoneNumber, imageUrl }) => {
 
   const [showControls, setShowControls] = useState(false);
   const [showMoreSettings, setShowMoreSettings] = useState(false);
+
+  const moreSettingsAnimation = useTransition(showMoreSettings, {
+    config: { duration: 200 },
+    delay: 50,
+    from: { opacity: 0, rotateX: 90, y: -50 },
+    enter: { opacity: 1, rotateX: 0, y: 0 },
+    leave: { opacity: 0, rotateX: 90, y: -50 },
+  });
 
   const closeSettings = () => {
     setShowMoreSettings(false);
@@ -76,22 +85,24 @@ const SingleContact = ({ id, name, phoneNumber, imageUrl }) => {
             </button>
           </div>
         )}
-        {showMoreSettings && (
-          <div className="more-settings">
-            <button className="main-btn body" onClick={handleEdit}>
-              <img src={settingsIcon} alt="settings" />
-              Edit
-            </button>
-            <button className="main-btn body">
-              <img src={favouriteIcon} alt="set-favourite" />
-              Favourite
-            </button>
-            <button className="main-btn body" onClick={handleRemove}>
-              <img src={deleteIcon} alt="remove" />
-              Remove
-            </button>
-          </div>
-        )}
+        {moreSettingsAnimation((style, item) => (
+          item && (
+            <animated.div className="more-settings" style={style}>
+              <button className="main-btn body" onClick={handleEdit}>
+                <img src={settingsIcon} alt="settings" />
+                Edit
+              </button>
+              <button className="main-btn body">
+                <img src={favouriteIcon} alt="set-favourite" />
+                Favourite
+              </button>
+              <button className="main-btn body" onClick={handleRemove}>
+                <img src={deleteIcon} alt="remove" />
+                Remove
+              </button>
+            </animated.div>
+          )
+        ))}
       </div>
     </>
   );
