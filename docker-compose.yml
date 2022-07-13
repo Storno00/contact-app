@@ -1,0 +1,21 @@
+version: '3.9'
+services:
+  frontend:
+    build: ./frontend
+    command: yarn start
+    ports:
+      - '3000:3000'
+    depends_on:
+      - backend
+    environment:
+      REACT_APP_BACKEND_URL: "http://localhost:8000"
+      REACT_APP_CLOUDINARY_URL: "https://api.cloudinary.com/v1_1/dooqcjpph/image/upload"
+      REACT_APP_CLOUDINARY_UPLOAD_PRESET_NAME: "jjhnwxfp"
+  backend:
+    build: ./backend
+    command: yarn start
+    ports:
+      - '8000:8000'
+    environment:
+      PORT: 8000
+      DATABASE_URL: "file:./dev.db"
