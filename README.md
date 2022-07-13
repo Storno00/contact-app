@@ -21,6 +21,8 @@ $ yarn start
 ```bash
 $ docker compose up
 ```
+ - Frontend URL: http://localhost:3000/
+ - Backend URL: http://localhost:8000/
 
 ## Used technologies
 **Frontend**
