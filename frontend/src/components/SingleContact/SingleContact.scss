@@ -16,7 +16,6 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  cursor: pointer;
   padding: 12px 0;
   position: relative;
 }
@@ -31,6 +30,7 @@
 
 .image-container {
   width: 40px;
+  min-width: 40px;
   height: 40px;
   border: 1px solid $g60;
   border-radius: 100px;
@@ -65,10 +65,10 @@
   border-radius: 8px;
   overflow: hidden;
   position: absolute;
-  right: 0;
+  right: -179px;
   top: 50px;
-  transform: translateX(179px);
   z-index: 100;
+  margin-top: 8px;
 }
 
 .more-settings button {
@@ -82,4 +82,10 @@
 
 .more-settings button img {
   margin-right: 14px;
+}
+
+@media screen and (max-width: 950px) {
+  .more-settings {
+    right: 0;
+  }
 }

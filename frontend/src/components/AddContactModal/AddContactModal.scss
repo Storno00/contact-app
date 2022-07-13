@@ -9,8 +9,8 @@
 }
 
 .image {
-  height: 88px;
-  width: 88px;
+  max-height: 88px;
+  max-width: 88px;
   border-radius: 100px;
   overflow: hidden;
 }
@@ -42,6 +42,10 @@
   width: 90%;
 }
 
+.input-group label {
+  color: $secondary;
+}
+
 .form-buttons {
   display: flex;
   flex-direction: row;
@@ -54,4 +58,11 @@
   color: $red;
   margin-top: 8px;
   margin-left: 3px;
+}
+
+@media screen and (max-width: 420px) {
+  .add-contact-modal {
+    width: 80vw;
+    max-width: none;
+  }
 }

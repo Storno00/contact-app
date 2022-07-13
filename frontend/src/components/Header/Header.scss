@@ -53,4 +53,20 @@ nav span {
 
 nav button {
   margin-left: 11px;
+  min-width: 127px;
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.04)), linear-gradient(180deg, rgba(40, 40, 40, 0.7) 0%, #282828 100%), #141414;
+}
+
+@media screen and (max-width: 749px) {
+  header {
+    margin-top: 50px;
+    margin-bottom: 40px;
+  }
+  .header-middle {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .header-left, .header-right {
+    margin: 0;
+  }
 }
