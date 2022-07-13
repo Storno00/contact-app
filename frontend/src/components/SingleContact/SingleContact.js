@@ -10,7 +10,7 @@ import Axios from 'axios';
 import { BACKEND_CONTACT } from '../../constants/url';
 import ContactsContext from '../../contexts/ContactProvider';
 import ShowModalContext from '../../contexts/ShowModalProvider';
-import  {useTransition, animated } from 'react-spring';
+import { useTransition, animated } from 'react-spring';
 
 const SingleContact = ({ id, name, phoneNumber, imageUrl }) => {
 
@@ -101,8 +101,7 @@ const SingleContact = ({ id, name, phoneNumber, imageUrl }) => {
                 Remove
               </button>
             </animated.div>
-          )
-        ))}
+          )))}
       </div>
     </>
   );

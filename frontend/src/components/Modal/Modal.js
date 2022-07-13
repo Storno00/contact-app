@@ -1,6 +1,6 @@
 import './Modal.scss';
 import ReactDOM from 'react-dom';
-import {useTransition, animated} from 'react-spring';
+import { useTransition, animated } from 'react-spring';
 
 const Modal = ({showModal, setShowModal, children}) => {
 
