@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import {useContext} from 'react';
 import './App.scss';
 import Header from './components/Header/Header';
 import Modal from './components/Modal/Modal';
@@ -17,9 +17,12 @@ const App = () => {
 
   return (
     <div className="app">
-      <Header />
+      <Header/>
       <Modal showModal={showAddModal} setShowModal={setShowAddModal}>
-        <EditContactModal addOrEdit="add" setShowModal={setShowAddModal} />
+        <EditContactModal
+          addOrEdit="add"
+          setShowModal={setShowAddModal}
+        />
       </Modal>
       <Modal showModal={showEditModal} setShowModal={setShowEditModal}>
         <EditContactModal
@@ -28,7 +31,7 @@ const App = () => {
           id={modalContactId}
         />
       </Modal>
-      <Contacts />
+      <Contacts/>
     </div>
   );
 };
