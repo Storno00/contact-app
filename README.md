@@ -1,6 +1,6 @@
 # Contact App 📝
 
-This is a project created for uxstudio's Full-Stack Developer Challenge
+This is a simple contact app where you can store your contact data: email, phone number, and profile picture
 
 ## Run application with yarn 💻
 1. Install [node](https://nodejs.org/en/download/) on your system
